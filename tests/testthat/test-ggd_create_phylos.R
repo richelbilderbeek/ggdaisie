@@ -17,4 +17,5 @@ test_that("use", {
   phylos <- ggd_create_phylos(df, island_age = 4)
   expect_true(class(phylos) == "multiPhylo")
   expect_true(length(phylos) == 2)
+
 })
