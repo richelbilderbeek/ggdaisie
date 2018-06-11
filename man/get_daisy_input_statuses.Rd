@@ -2,12 +2,12 @@
 % Please edit documentation in R/get_daisy_input_statuses.R
 \name{get_daisy_input_statuses}
 \alias{get_daisy_input_statuses}
-\title{DAISIE input statuses as used by \code{\link[DAISIE](DAISIE_dataprep]}}
+\title{DAISIE input statuses as used by \code{\link[DAISIE](DAISIE_dataprep)}}
 \usage{
 get_daisy_input_statuses()
 }
 \description{
-DAISIE input statuses as used by \code{\link[DAISIE](DAISIE_dataprep]}
+DAISIE input statuses as used by \code{\link[DAISIE](DAISIE_dataprep)}
 }
 \author{
 Richel J.C. Bilderbeek

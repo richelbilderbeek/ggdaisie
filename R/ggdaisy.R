@@ -46,17 +46,6 @@ ggdaisie <- function(
     ggtree::theme_tree2()
 }
 
-
-create_single_taxon_tree <- function(
-  time, taxon_label
-) {
-  group <- NULL; rm(group) # nolint, should fix warning: no visible binding for global variable
-
-  phylo <- ape::read.tree(text = paste0("(", taxon_label,":", time, ",B:", time, ");"))
-  attr(phylo, "group") <- as.factor(c(2, 1, 2))
-  phylo
-}
-
  test_plot_two_one_taxon_trees_naive <- function(
   time_1 = 10, taxon_label_1 = "kip",
   time_2 = 5, taxon_label_2 = "koe"

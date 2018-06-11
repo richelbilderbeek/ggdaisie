@@ -1,4 +1,4 @@
-#' DAISIE input statuses as used by \code{\link[DAISIE](DAISIE_dataprep]}
+#' DAISIE input statuses as used by \code{\link[DAISIE](DAISIE_dataprep)}
 #' @author Richel J.C. Bilderbeek
 #' @export
 get_daisy_input_statuses <- function() {
