@@ -140,8 +140,18 @@ ggd_create_phylo_endemic <- function(
      stem_length = island_age - immigration_time,
      outgroup_name = "X"
     )
+
+    n_statuses <- (ape::Ntip(phylo) * 2) - 1
+    print(
+      paste(
+        "clade_label", clade_label,
+        "ape::Ntip(phylo)", ape::Ntip(phylo),
+        "n_statuses", n_statuses
+      )
+    )
+
     attr(phylo, "status") <- factor(
-      rep("Endemic", n = (ape::Ntip(phylo) * 2) - 1),
+      rep("Endemic", times = n_statuses),
       levels = get_ggdaisy_states()
     )
   } else {
@@ -165,5 +175,6 @@ ggd_create_phylo_endemic <- function(
       levels = get_ggdaisy_states()
     )
   }
+
   phylo
 }

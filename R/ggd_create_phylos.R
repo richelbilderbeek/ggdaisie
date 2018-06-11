@@ -28,6 +28,7 @@ ggd_create_phylos <- function(
       island_age = island_age
     )
     testit::assert(!is.null(phylo))
+    testit::assert("status" %in% names(attributes(phylo)))
     phylos <- c(phylos, phylo)
     testit::assert(class(phylos) == "multiPhylo")
   }
@@ -35,6 +36,11 @@ ggd_create_phylos <- function(
   testit::assert(class(phylos) == "multiPhylo")
   # Remove the dummy phylo object
   phylos <- phylos[-1]
+
+  testit::assert(class(phylos) == "multiPhylo")
+  for (phylo in phylos) {
+    testit::assert("status" %in% names(attributes(phylo)))
+  }
 
   phylos
 }

@@ -22,20 +22,7 @@ ggdaisie <- function(
   phylos <- ggd_create_phylos(df = df, island_age = island_age)
   testit::assert(class(phylos) == "multiPhylo")
   testit::assert(length(phylos) == nrow(df))
-
-  ggtree::ggtree(
-    phylos,
-    ggtree::aes(color = status, linetype = status)
-  ) +
-    #ggplot2::scale_colour_manual(values = c("#008800", "#008800", "#FFFFFF")) +
-    ggplot2::facet_wrap(~.id, scales="fixed", nrow = length(phylos)) +
-    ggtree::geom_tiplab(align = FALSE) + # nolint will align by adding a hidden root later
-    ggtree::theme_tree2(
-      strip.text.x = ggplot2::element_blank(),
-      strip.text.y = ggplot2::element_blank()
-    ) +
-    ggtree::geom_rootpoint()
-
+  ggd_plot(phylos)
 }
 
  test_plot_two_one_taxon_trees_naive <- function(
