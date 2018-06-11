@@ -142,16 +142,14 @@ ggd_create_phylo_endemic <- function(
     )
 
     n_statuses <- (ape::Ntip(phylo) * 2) - 1
-    print(
-      paste(
-        "clade_label", clade_label,
-        "ape::Ntip(phylo)", ape::Ntip(phylo),
-        "n_statuses", n_statuses
-      )
-    )
+    statuses <- rep("Endemic", times = n_statuses)
+    statuses[1] <- "invisible"
+    statuses[2] <- "invisible"
+    statuses[n_statuses-2] <- "invisible"
+    statuses[n_statuses-1] <- "invisible"
 
     attr(phylo, "status") <- factor(
-      rep("Endemic", times = n_statuses),
+      statuses,
       levels = get_ggdaisy_states()
     )
   } else {

@@ -8,10 +8,9 @@ ggd_plot <- function(phylos) {
     testit::assert("status" %in% names(attributes(phylo)))
   }
   ggtree::ggtree(
-    phylos
-    ,ggtree::aes(color = status, linetype = status)
+    phylos, ggtree::aes(color = status, linetype = status)
   ) +
-    #ggplot2::scale_colour_manual(values = c("#008800", "#008800", "#FFFFFF")) +
+    ggplot2::scale_colour_manual(values = c("#0000FF", "#008800", "#008800", "#FFFFFF")) +
     ggplot2::facet_wrap(~.id, scales="fixed", nrow = length(phylos)) +
     ggtree::geom_tiplab(align = FALSE) + # nolint will align by adding a hidden root later
     ggtree::theme_tree2(

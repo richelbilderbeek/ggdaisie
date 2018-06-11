@@ -34,6 +34,7 @@ ggd_create_phylos <- function(
   }
 
   testit::assert(class(phylos) == "multiPhylo")
+
   # Remove the dummy phylo object
   phylos <- phylos[-1]
 
