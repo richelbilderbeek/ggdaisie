@@ -6,6 +6,7 @@ cache: packages
 
 packages: testit, ape, ggplot2, phytools, testit
 bioc_packages: ggtree
+
 github_packages:
-  richelbilderbeek/DAISIE/DAISIE,
-  richelbilderbeek/ribir
+  - richelbilderbeek/DAISIE/DAISIE
+  - richelbilderbeek/ribir
