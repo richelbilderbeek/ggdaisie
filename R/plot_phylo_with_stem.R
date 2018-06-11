@@ -17,6 +17,8 @@ plot_phylo_with_stem_ape <- function(phylo) {
 #' @author Richel J.C. Bilderbeek
 plot_phylo_with_stem_ggtree <- function(phylo) {
 
+  group <- NULL; rm(group) # nolint, should fix warning: no visible binding for global variable
+
   phylo_with_outgroup <- ribir::add_outgroup_to_phylogeny(
     phylogeny = phylo,
     stem_length = phylo$root.edge,
