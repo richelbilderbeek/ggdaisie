@@ -11,6 +11,7 @@ ggd_plot <- function(phylos) {
     phylos, ggtree::aes(color = status, linetype = status)
   ) +
     ggplot2::scale_colour_manual(values = c("#0000FF", "#008800", "#008800", "#FFFFFF")) +
+    ggplot2::scale_linetype_manual(values = c("solid", "solid", "dashed", "longdash")) +
     ggplot2::facet_wrap(~.id, scales="fixed", nrow = length(phylos)) +
     ggtree::geom_tiplab(align = FALSE) + # nolint will align by adding a hidden root later
     ggtree::theme_tree2(
