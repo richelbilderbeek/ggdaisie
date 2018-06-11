@@ -3,4 +3,5 @@
 export(get_daisie_data)
 export(get_daisy_input_statuses)
 export(get_ggdaisy_states)
+export(ggd_create_phylos)
 export(ggdaisie)

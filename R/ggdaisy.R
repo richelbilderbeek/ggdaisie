@@ -19,35 +19,13 @@ ggdaisie <- function(
 
   status <- NULL; rm(status) # nolint, should fix warning: no visible binding for global variable
 
-  nrows <- nrow(df)
-
-  # Initialize with a dummy phylo object,
-  # so that 'c' can convert to multiPhylo
-  phylos <- ape::read.tree(text = "(X:0,Y:0);")
-
-  for (i in seq(1, nrows)) {
-    brts_str <- df$Branching_times[i]
-    brts <- as.numeric(strsplit(brts_str, ',')[[1]])
-    phylo <- ggd_create_phylo(
-      clade_name = df$Clade_name[i],
-      status = df$Status[i],
-      branching_times = brts,
-      island_age = island_age
-    )
-    if (is.null(phylo)) next
-    phylos <- c(phylos, phylo)
-    testit::assert(class(phylos) == "multiPhylo")
-  }
-
-  testit::assert(class(phylos) == "multiPhylo")
-  # Remove the dummy phylo object
-  phylos <- phylos[-1]
+  phylos <- ggd_create_phylos(df = df, island_age = island_age)
 
   ggtree::ggtree(
     phylos,
     ggtree::aes(color = status, linetype = status)
   ) +
-    ggplot2::scale_colour_manual(values = c("#008800", "#008800", "#FFFFFF")) +
+    #ggplot2::scale_colour_manual(values = c("#008800", "#008800", "#FFFFFF")) +
     ggplot2::facet_wrap(~.id, scales="fixed", nrow = length(phylos)) +
     ggtree::geom_tiplab(align = FALSE) + # nolint will align by adding a hidden root later
     ggtree::theme_tree2(
