@@ -6,10 +6,12 @@
 
 #' Plot a DAISIE data table
 #' @param df a data frame
+#' @param island_age age of the island
 #' @author Richel J.C. Bilderbeek
 #' @export
 ggdaisie <- function(
-  df
+  df,
+  island_age
 ) {
   testit::assert("Status" %in% names(df))
   testit::assert(all(df$Status %in% get_daisy_input_statuses()))

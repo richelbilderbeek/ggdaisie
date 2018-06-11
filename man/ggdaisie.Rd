@@ -4,10 +4,12 @@
 \alias{ggdaisie}
 \title{Plot a DAISIE data table}
 \usage{
-ggdaisie(df)
+ggdaisie(df, island_age)
 }
 \arguments{
 \item{df}{a data frame}
+
+\item{island_age}{age of the island}
 }
 \description{
 Plot a DAISIE data table
