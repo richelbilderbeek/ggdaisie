@@ -20,6 +20,8 @@ ggdaisie <- function(
   status <- NULL; rm(status) # nolint, should fix warning: no visible binding for global variable
 
   phylos <- ggd_create_phylos(df = df, island_age = island_age)
+  testit::assert(class(phylos) == "multiPhylo")
+  testit::assert(length(phylos) == nrow(df))
 
   ggtree::ggtree(
     phylos,

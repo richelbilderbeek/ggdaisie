@@ -13,17 +13,18 @@ ggd_create_phylo <- function(
   island_age = max(branching_times)
 ) {
   testit::assert(status %in% get_daisy_input_statuses())
+  phylo <- NULL
   if (status == "Non_endemic_MaxAge") {
     testit::assert(length(branching_times) == 1)
     testit::assert(branching_times[1] >= island_age)
-    ggd_create_phylo_non_endemic_max_age(
+    phylo <- ggd_create_phylo_non_endemic_max_age(
       time = island_age,
       taxon_label = clade_name
     )
   } else if (status == "Non_endemic") {
     testit::assert(length(branching_times) == 1)
     testit::assert(branching_times[1] <= island_age)
-    ggd_create_phylo_non_endemic(
+    phylo <- ggd_create_phylo_non_endemic(
       immigration_time = branching_times,
       taxon_label = clade_name,
       island_age = island_age
@@ -31,15 +32,17 @@ ggd_create_phylo <- function(
   } else if (status == "Endemic") {
     testit::assert(length(branching_times) >= 1)
     testit::assert(all(branching_times <= island_age))
-    ggd_create_phylo_endemic(
+    phylo <- ggd_create_phylo_endemic(
       immigration_time = branching_times[1],
       branching_times = branching_times[-1],
       clade_label = clade_name,
       island_age = island_age
     )
   } else {
-    NULL
+    testit::assert(status == "Endemic&Non_Endemic")
+    stop("Not implemented yet")
   }
+  phylo
 }
 
 #' Create a phylogeny with the correct statuses
@@ -138,7 +141,7 @@ ggd_create_phylo_endemic <- function(
      outgroup_name = "X"
     )
     attr(phylo, "status") <- factor(
-      rep("Endemic", n = ape::Ntip(phylo) + 2),
+      rep("Endemic", n = (ape::Ntip(phylo) * 2) - 1),
       levels = get_ggdaisy_states()
     )
   } else {
@@ -161,7 +164,6 @@ ggd_create_phylo_endemic <- function(
       c("invisible", "Endemic", "invisible", "invisible", "invisible"),
       levels = get_ggdaisy_states()
     )
-
   }
   phylo
 }

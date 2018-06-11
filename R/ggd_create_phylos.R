@@ -27,7 +27,7 @@ ggd_create_phylos <- function(
       branching_times = brts,
       island_age = island_age
     )
-    if (is.null(phylo)) next
+    testit::assert(!is.null(phylo))
     phylos <- c(phylos, phylo)
     testit::assert(class(phylos) == "multiPhylo")
   }

@@ -26,7 +26,7 @@ test_that("use, Non_endemic", {
   expect_true(all(levels(attributes(phylo)$status) %in% get_ggdaisy_states()))
 })
 
-test_that("use, Non_endemic", {
+test_that("use, Non_endemic, specialized function", {
   island_age <- 4
   phylo <- ggdaisie:::ggd_create_phylo_non_endemic(
     taxon_label = "Dendroica",
@@ -41,6 +41,19 @@ test_that("use, Non_endemic", {
 })
 
 test_that("use, Endemic, 3 branching times", {
+  phylo <- ggdaisie:::ggd_create_phylo(
+    clade_name = "Mimus",
+    status = "Endemic",
+    branching_times = c(3.958, 3.422,2.884,0.459),
+    island_age = 4
+  )
+  expect_true(class(phylo) == "phylo")
+  expect_true("status" %in% names(attributes(phylo)))
+  expect_true(all(attributes(phylo)$status %in% get_ggdaisy_states()))
+  expect_true(all(levels(attributes(phylo)$status) %in% get_ggdaisy_states()))
+})
+
+test_that("use, Endemic, 3 branching times, specialized function", {
   island_age <- 4
   phylo <- ggdaisie:::ggd_create_phylo_endemic(
     clade_label = "Mimus",
@@ -56,7 +69,20 @@ test_that("use, Endemic, 3 branching times", {
   expect_silent(ape::plot.phylo(phylo))
 })
 
-test_that("use, Endemic, 1 branching time", {
+test_that("use, Endemic, 1 branching times", {
+  phylo <- ggdaisie:::ggd_create_phylo(
+    clade_name = "Mimus_subset",
+    status = "Endemic",
+    branching_times = c(3.958, 3.422),
+    island_age = 4
+  )
+  expect_true(class(phylo) == "phylo")
+  expect_true("status" %in% names(attributes(phylo)))
+  expect_true(all(attributes(phylo)$status %in% get_ggdaisy_states()))
+  expect_true(all(levels(attributes(phylo)$status) %in% get_ggdaisy_states()))
+})
+
+test_that("use, Endemic, 1 branching time, specialized function", {
   island_age <- 4
   phylo <- ggdaisie:::ggd_create_phylo_endemic(
     clade_label = "Mimus_subset",
@@ -73,6 +99,19 @@ test_that("use, Endemic, 1 branching time", {
 })
 
 test_that("use, Endemic, 0 branching times", {
+  phylo <- ggdaisie:::ggd_create_phylo(
+    clade_name = "Myiarchus",
+    status = "Endemic",
+    branching_times = c(0.855),
+    island_age = 4
+  )
+  expect_true(class(phylo) == "phylo")
+  expect_true("status" %in% names(attributes(phylo)))
+  expect_true(all(attributes(phylo)$status %in% get_ggdaisy_states()))
+  expect_true(all(levels(attributes(phylo)$status) %in% get_ggdaisy_states()))
+})
+
+test_that("use, Endemic, 0 branching times, specialized function", {
   island_age <- 4
   phylo <- ggdaisie:::ggd_create_phylo_endemic(
     clade_label = "Myiarchus",
