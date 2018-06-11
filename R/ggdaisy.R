@@ -39,7 +39,7 @@ ggdaisie <- function(
   phylos <- phylos[-1]
   ggtree::ggtree(
     phylos,
-    ggtree::aes(color = group, linetype = group)
+    ggtree::aes(color = status, linetype = status)
   ) +
     ggplot2::scale_colour_manual(values = c("#FFFFFF", "#008800")) +
     ggplot2::facet_wrap(~.id, scales="fixed", nrow = length(phylos)) +
