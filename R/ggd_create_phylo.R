@@ -116,30 +116,53 @@ ggd_create_phylo_endemic <- function(
 ) {
   testit::assert(immigration_time <= island_age)
   testit::assert(all(branching_times < immigration_time))
+  testit::assert(length(branching_times) >= 0)
 
   status <- NULL; rm(status) # nolint, should fix warning: no visible binding for global variable
 
-  phylo <- ggd_brts_to_rnd_phylo(branching_times)
+  phylo <- NULL
 
-  # Add stem, by adding a hidden outgroup to the crown
-  phylo <- ribir::add_outgroup_to_phylogeny(
-   phylogeny = phylo,
-   stem_length = immigration_time - max(branching_times),
-   outgroup_name = "X"
-  )
+  if (length(branching_times) > 0) {
+    phylo <- ggd_brts_to_rnd_phylo(branching_times)
 
-  # Pad to the right, by adding a hidden outgroup to the stem
-  phylo <- ribir::add_outgroup_to_phylogeny(
-   phylogeny = phylo,
-   stem_length = island_age - immigration_time,
-   outgroup_name = "X"
-  )
+    # Add stem, by adding a hidden outgroup to the crown
+    phylo <- ribir::add_outgroup_to_phylogeny(
+     phylogeny = phylo,
+     stem_length = immigration_time - max(branching_times),
+     outgroup_name = "X"
+    )
 
-  attr(phylo, "status") <- factor(
-    c("Endemic"),
-    levels = get_ggdaisy_states()
-  )
+    # Pad to the right, by adding a hidden outgroup to the stem
+    phylo <- ribir::add_outgroup_to_phylogeny(
+     phylogeny = phylo,
+     stem_length = island_age - immigration_time,
+     outgroup_name = "X"
+    )
+    attr(phylo, "status") <- factor(
+      c("Endemic"),
+      levels = get_ggdaisy_states()
+    )
+  } else {
+    testit::assert(length(branching_times) == 0)
+    newick <- paste0("(",
+      clade_label,":", immigration_time,
+      ",X:", immigration_time, ");"
+    )
 
+    phylo <- ape::read.tree(text = newick)
 
+    # Pad to the right, by adding a hidden outgroup to the stem
+    phylo <- ribir::add_outgroup_to_phylogeny(
+     phylogeny = phylo,
+     stem_length = island_age - immigration_time,
+     outgroup_name = "X"
+    )
+
+    attr(phylo, "status") <- factor(
+      c("invisible", "Endemic", "invisible", "invisible", "invisible"),
+      levels = get_ggdaisy_states()
+    )
+
+  }
   phylo
 }
