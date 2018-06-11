@@ -39,6 +39,7 @@ ggdaisie <- function(
     testit::assert(class(phylos) == "multiPhylo")
   }
 
+  testit::assert(class(phylos) == "multiPhylo")
   # Remove the dummy phylo object
   phylos <- phylos[-1]
 

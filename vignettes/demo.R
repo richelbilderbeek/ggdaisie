@@ -16,6 +16,6 @@ df <- df[ order(fig_order), ]
 rownames(df) <- NULL
 knitr::kable(df)
 
-## ------------------------------------------------------------------------
-ggdaisie(df)
+## ----fig.width=7, fig.height=7-------------------------------------------
+#ggdaisie(df, island_age = 4)
 

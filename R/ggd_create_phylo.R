@@ -25,7 +25,8 @@ ggd_create_phylo <- function(
     testit::assert(branching_times[1] <= island_age)
     ggd_create_phylo_non_endemic(
       immigration_time = branching_times,
-      taxon_label = clade_name
+      taxon_label = clade_name,
+      island_age = island_age
     )
   } else {
     NULL
@@ -55,12 +56,16 @@ ggd_create_phylo_non_endemic_max_age <- function(
 #' Create a phylogeny with the correct statuses
 #' @param immigration_time immigration time
 #' @param taxon_label name of the one species in this clade
+#' @param island_age the island's age, used for padding
 #' @return a phylogeny of class \code{phylo} with a \code{status} attribute
 #' @author Richel J.C. Bilderbeek
 ggd_create_phylo_non_endemic <- function(
   immigration_time,
-  taxon_label
+  taxon_label,
+  island_age = immigration_time
 ) {
+  testit::assert(immigration_time <= island_age)
+
   status <- NULL; rm(status) # nolint, should fix warning: no visible binding for global variable
 
   newick <- paste0("(",
@@ -68,13 +73,20 @@ ggd_create_phylo_non_endemic <- function(
     ",X:", immigration_time, ");"
   )
 
-  phylo <- ape::read.tree(
-    text = newick
-  )
+  phylo <- ape::read.tree(text = newick)
+
+  # Pad to the right, by adding a hidden outgroup to the stem
+  #phylo <- ribir::add_outgroup_to_phylogeny(
+  #  phylogeny = phylo,
+  #  stem_length = island_age - immigration_time,
+  #  outgroup_name = "X"
+  #)
+
   attr(phylo, "status") <- factor(
     c("Non_endemic", "invisible", "Non_endemic"),
     levels = get_ggdaisy_states()
   )
+
 
   phylo
 }

@@ -4,12 +4,15 @@
 \alias{ggd_create_phylo_non_endemic}
 \title{Create a phylogeny with the correct statuses}
 \usage{
-ggd_create_phylo_non_endemic(immigration_time, taxon_label)
+ggd_create_phylo_non_endemic(immigration_time, taxon_label,
+  island_age = immigration_time)
 }
 \arguments{
 \item{immigration_time}{immigration time}
 
 \item{taxon_label}{name of the one species in this clade}
+
+\item{island_age}{the island's age, used for padding}
 }
 \value{
 a phylogeny of class \code{phylo} with a \code{status} attribute
