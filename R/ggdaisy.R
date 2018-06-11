@@ -17,8 +17,6 @@ ggdaisie <- function(
   testit::assert(all(df$Status %in% get_daisy_input_statuses()))
   testit::assert(class(df$Branching_times) == "character")
 
-  status <- NULL; rm(status) # nolint, should fix warning: no visible binding for global variable
-
   phylos <- ggd_create_phylos(df = df, island_age = island_age)
   testit::assert(class(phylos) == "multiPhylo")
   testit::assert(length(phylos) == nrow(df))

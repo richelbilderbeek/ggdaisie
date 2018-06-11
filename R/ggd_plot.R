@@ -8,6 +8,9 @@ ggd_plot <- function(phylos) {
   for (phylo in phylos) {
     testit::assert("status" %in% names(attributes(phylo)))
   }
+
+  status <- NULL; rm(status) # nolint, should fix warning: no visible binding for global variable
+
   ggtree::ggtree(
     phylos, ggtree::aes(color = status, linetype = status)
   ) +
