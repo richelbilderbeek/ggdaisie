@@ -29,7 +29,6 @@ ggd_create_phylo <- function(
       island_age = island_age
     )
   } else if (status == "Endemic") {
-    if (length(branching_times) == 1) return(NULL)
     testit::assert(length(branching_times) >= 1)
     testit::assert(all(branching_times <= island_age))
     ggd_create_phylo_endemic(
@@ -139,7 +138,7 @@ ggd_create_phylo_endemic <- function(
      outgroup_name = "X"
     )
     attr(phylo, "status") <- factor(
-      c("Endemic"),
+      rep("Endemic", n = ape::Ntip(phylo) + 2),
       levels = get_ggdaisy_states()
     )
   } else {

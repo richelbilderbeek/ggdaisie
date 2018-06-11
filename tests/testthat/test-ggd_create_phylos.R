@@ -28,7 +28,10 @@ test_that("use Endemic", {
   df <- df[ df$Status == "Endemic", ]
   phylos <- ggd_create_phylos(df, island_age = island_age)
   expect_true(class(phylos) == "multiPhylo")
-  expect_true(length(phylos) == 2)
+  expect_true(length(phylos) == 5)
   expect_equal(island_age, ggdaisie:::get_crown_age(phylos[[1]]))
   expect_equal(island_age, ggdaisie:::get_crown_age(phylos[[2]]))
+  expect_equal(island_age, ggdaisie:::get_crown_age(phylos[[3]]))
+  expect_equal(island_age, ggdaisie:::get_crown_age(phylos[[4]]))
+  expect_equal(island_age, ggdaisie:::get_crown_age(phylos[[5]]))
 })
