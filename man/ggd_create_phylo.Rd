@@ -6,9 +6,20 @@
 \usage{
 ggd_create_phylo(clade_name, status, branching_times)
 }
+\arguments{
+\item{clade_name}{the clade's name}
+
+\item{status}{the clade's status,
+must be a member of \code{\link{get_daisy_input_statuses}}}
+
+\item{branching_times}{branching times}
+}
 \value{
 a phylogeny of class \code{phylo} with a \code{status} attribute
 }
 \description{
 Create a phylogeny with the correct statuses
+}
+\author{
+Richel J.C. Bilderbeek
 }

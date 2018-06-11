@@ -14,7 +14,7 @@ ggdaisie <- function(
   testit::assert("Status" %in% names(df))
   testit::assert(all(df$Status %in% get_daisy_input_statuses()))
 
-  group <- NULL; rm(group) # nolint, should fix warning: no visible binding for global variable
+  status <- NULL; rm(status) # nolint, should fix warning: no visible binding for global variable
 
   nrows <- nrow(df)
 
@@ -23,15 +23,13 @@ ggdaisie <- function(
   phylos <- ape::read.tree(text = "(X:0,Y:0);")
 
   for (i in seq(1, nrows)) {
-  if (df$Status[i] != "Non_endemic_MaxAge") next
-    phylos <- c(
-      phylos,
-      ggd_create_phylo(
-        clade_name = df$Clade_name[i],
-        status = df$Status[i],
-        branching_times = df$Branching_times[i]
-      )
+    phylo <- ggd_create_phylo(
+      clade_name = df$Clade_name[i],
+      status = df$Status[i],
+      branching_times = df$Branching_times[i]
     )
+    if (is.null(phylo)) next
+    phylos <- c(phylos, phylo)
     testit::assert(class(phylos) == "multiPhylo")
   }
 

@@ -57,5 +57,5 @@ knitr::kable(df)
 Plot:
 
 ```{r}
-ggdaisie(df)
+#ggdaisie(df)
 ```
