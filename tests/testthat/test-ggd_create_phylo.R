@@ -73,7 +73,6 @@ test_that("use, Endemic, 1 branching time", {
 })
 
 test_that("use, Endemic, 0 branching times", {
-  skip("WIP")
   island_age <- 4
   phylo <- ggdaisie:::ggd_create_phylo_endemic(
     clade_label = "Myiarchus",
