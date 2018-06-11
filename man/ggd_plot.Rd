@@ -6,6 +6,9 @@
 \usage{
 ggd_plot(phylos)
 }
+\arguments{
+\item{phylos}{one or more phylogenies, of class \code{multiPhylo}}
+}
 \description{
 Plot the phylogenies at the same scale
 }

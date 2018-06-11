@@ -1,4 +1,5 @@
 #' Plot the phylogenies at the same scale
+#' @param phylos one or more phylogenies, of class \code{multiPhylo}
 #' @author Richel J.C. Bilderbeek
 #' @export
 ggd_plot <- function(phylos) {
