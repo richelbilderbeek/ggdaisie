@@ -25,6 +25,10 @@ ggd_create_phylo_non_endemic_max_age <- function(
   group <- NULL; rm(group) # nolint, should fix warning: no visible binding for global variable
 
   phylo <- ape::read.tree(text = paste0("(", taxon_label,":", time, ",X:", time, ");"))
-  attr(phylo, "status") <- as.factor(c(2, 1, 2))
+  attr(phylo, "status") <- factor(
+    c("Non_endemic_MaxAge", "invisible", "Non_endemic_MaxAge"),
+    levels = get_ggdaisy_states()
+  )
+
   phylo
 }
