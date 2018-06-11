@@ -90,3 +90,46 @@ ggd_create_phylo_non_endemic <- function(
 
   phylo
 }
+
+#' Create a phylogeny with the correct statuses
+#' @param immigration_time immigration time
+#' @param clade_label name of this clade
+#' @param branching_times branching times
+#' @param island_age the island's age, used for padding
+#' @return a phylogeny of class \code{phylo} with a \code{status} attribute
+#' @author Richel J.C. Bilderbeek
+ggd_create_phylo_endemic <- function(
+  immigration_time,
+  clade_label,
+  branching_times,
+  island_age = immigration_time
+) {
+  testit::assert(immigration_time <= island_age)
+  testit::assert(all(branching_times < immigration_time))
+
+  status <- NULL; rm(status) # nolint, should fix warning: no visible binding for global variable
+
+  phylo <- ggd_brts_to_rnd_phylo(branching_times)
+
+  # Add stem, by adding a hidden outgroup to the crown
+  phylo <- ribir::add_outgroup_to_phylogeny(
+   phylogeny = phylo,
+   stem_length = immigration_time - max(branching_times),
+   outgroup_name = "X"
+  )
+
+  # Pad to the right, by adding a hidden outgroup to the stem
+  phylo <- ribir::add_outgroup_to_phylogeny(
+   phylogeny = phylo,
+   stem_length = island_age - immigration_time,
+   outgroup_name = "X"
+  )
+
+  attr(phylo, "status") <- factor(
+    c("Endemic"),
+    levels = get_ggdaisy_states()
+  )
+
+
+  phylo
+}
