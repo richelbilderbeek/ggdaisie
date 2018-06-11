@@ -12,7 +12,7 @@ ggd_brts_to_rnd_phylo <- function(
   for (i in seq(2, length(branching_times))) {
     phylo <- ribir::add_outgroup_to_phylogeny(
       phylogeny = phylo,
-      stem_length = branching_times[i] - branching_times[i-1],
+      stem_length = branching_times[i] - branching_times[i - 1],
       outgroup_name = LETTERS[i + 1]
     )
   }

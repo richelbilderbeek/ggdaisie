@@ -41,7 +41,6 @@ test_that("use, Non_endemic", {
 })
 
 test_that("use, Endemic", {
-  skip("WIP")
   island_age <- 4
   phylo <- ggdaisie:::ggd_create_phylo_endemic(
     clade_label = "Mimus",
@@ -53,5 +52,6 @@ test_that("use, Endemic", {
   expect_true("status" %in% names(attributes(phylo)))
   expect_true(all(attributes(phylo)$status %in% get_ggdaisy_states()))
   expect_true(all(levels(attributes(phylo)$status) %in% get_ggdaisy_states()))
-  #expect_equal(ggdaisie:::get_crown_age(phylo), island_age)
+  expect_equal(ggdaisie:::get_crown_age(phylo), island_age)
+  expect_silent(ape::plot.phylo(phylo))
 })
