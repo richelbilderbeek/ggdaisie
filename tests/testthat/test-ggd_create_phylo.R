@@ -2,9 +2,10 @@ context("ggd_create_phylo")
 
 test_that("use, Non_endemic_MaxAge", {
   phylo <- ggdaisie:::ggd_create_phylo(
-    clade_name = "clade name",
+    clade_name = "Pyrocephalus rubinus",
     status = "Non_endemic_MaxAge",
-    branching_times = 1.0
+    branching_times = 10.28,
+    island_age = 4
   )
   expect_true(class(phylo) == "phylo")
   expect_true("status" %in% names(attributes(phylo)))
@@ -14,9 +15,10 @@ test_that("use, Non_endemic_MaxAge", {
 
 test_that("use, Non_endemic", {
   phylo <- ggdaisie:::ggd_create_phylo(
-    clade_name = "clade name",
+    clade_name = "Dendroica",
     status = "Non_endemic",
-    branching_times = 1.0
+    branching_times = 1.0,
+    island_age = 4
   )
   expect_true(class(phylo) == "phylo")
   expect_true("status" %in% names(attributes(phylo)))

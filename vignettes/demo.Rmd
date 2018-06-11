@@ -56,6 +56,6 @@ knitr::kable(df)
 
 Plot:
 
-```{r}
-ggdaisie(df)
+```{r fig.width=7, fig.height=7}
+ggdaisie(df, island_age = 4)
 ```
