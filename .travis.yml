@@ -6,3 +6,4 @@ cache: packages
 
 packages: testit
 bioc_packages: ggtree
+github_packages: richelbilderbeek/DAISIE/DAISIE
