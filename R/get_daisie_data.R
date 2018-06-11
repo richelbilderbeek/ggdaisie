@@ -1,12 +1,14 @@
-#' Get the full path of a file in the \code{inst/extdata} folder
+#' Read a data frame from the \code{data} folder
 #' @param filename the file's name, without the path
-#' @return the full path of the filename, if and only if
-#'   the file is present. Will stop otherwise.
+#' @return the content of the file as a data frame,
+#'   if and only if the file is present. Will stop otherwise.
 #' @author Richel J.C. Bilderbeek
-#' @seealso for more files, use \code{\link{get_babette_paths}}
 #' @examples
-#'   testit::assert(is.character(get_babette_path("anthus_aco.fas")))
-#'   testit::assert(is.character(get_babette_path("anthus_nd2.fas")))
+#'   testit::assert(
+#'     is.data.frame(
+#'       get_daisie_data("Galapagos_datatable.RData")
+#'     )
+#'   )
 #' @export
 get_daisie_data <- function(filename) {
 

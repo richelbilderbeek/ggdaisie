@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_daisie_data.R
 \name{get_daisie_data}
 \alias{get_daisie_data}
-\title{Get the full path of a file in the \code{inst/extdata} folder}
+\title{Read a data frame from the \code{data} folder}
 \usage{
 get_daisie_data(filename)
 }
@@ -10,18 +10,18 @@ get_daisie_data(filename)
 \item{filename}{the file's name, without the path}
 }
 \value{
-the full path of the filename, if and only if
-  the file is present. Will stop otherwise.
+the content of the file as a data frame,
+  if and only if the file is present. Will stop otherwise.
 }
 \description{
-Get the full path of a file in the \code{inst/extdata} folder
+Read a data frame from the \code{data} folder
 }
 \examples{
-  testit::assert(is.character(get_babette_path("anthus_aco.fas")))
-  testit::assert(is.character(get_babette_path("anthus_nd2.fas")))
-}
-\seealso{
-for more files, use \code{\link{get_babette_paths}}
+  testit::assert(
+    is.data.frame(
+      get_daisie_data("Galapagos_datatable.RData")
+    )
+  )
 }
 \author{
 Richel J.C. Bilderbeek
