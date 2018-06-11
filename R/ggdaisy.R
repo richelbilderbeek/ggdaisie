@@ -42,9 +42,13 @@ ggdaisie <- function(
   ) +
     ggplot2::scale_colour_manual(values = c("#008800", "#008800", "#FFFFFF")) +
     ggplot2::facet_wrap(~.id, scales="fixed", nrow = length(phylos)) +
-    ggtree::geom_tiplab() +
-    ggtree::theme_tree2() +
+    ggtree::geom_tiplab(align = FALSE) + # nolint will align by adding a hidden root later
+    ggtree::theme_tree2(
+      strip.text.x = ggplot2::element_blank(),
+      strip.text.y = ggplot2::element_blank()
+    ) +
     ggtree::geom_rootpoint()
+
 }
 
  test_plot_two_one_taxon_trees_naive <- function(
