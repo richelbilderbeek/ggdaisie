@@ -105,10 +105,8 @@ test_plot_one_taxon_tree <- function(
 
 test_plot_two_taxon_tree_with_stem <- function() {
 
-  # CANNOT BE DONE
   phylo <- ape::read.tree(text = "(A:1,B:1):20;")
-  ape::plot.phylo(phylo, root.edge = TRUE); ape::add.scale.bar()
-  ggtree::ggtree(phylo) + ggtree::geom_treescale() + ggtree::geom_rootpoint()
+  plot_phylo_with_stem(phylo)
 }
 
 test_plot_two_taxon_tree <- function() {
