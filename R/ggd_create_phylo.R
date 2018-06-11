@@ -28,6 +28,16 @@ ggd_create_phylo <- function(
       taxon_label = clade_name,
       island_age = island_age
     )
+  } else if (status == "Endemic") {
+    if (length(branching_times) == 1) return(NULL)
+    testit::assert(length(branching_times) >= 1)
+    testit::assert(all(branching_times <= island_age))
+    ggd_create_phylo_endemic(
+      immigration_time = branching_times[1],
+      branching_times = branching_times[-1],
+      clade_label = clade_name,
+      island_age = island_age
+    )
   } else {
     NULL
   }
