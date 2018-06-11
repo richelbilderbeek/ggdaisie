@@ -7,6 +7,10 @@ cache: packages
 packages: testit, ape, ggplot2, phytools, testit
 bioc_packages: ggtree
 
-github_packages:
+r_github_packages:
+  - jimhester/covr
+  - jimhester/lintr
+  - MangoTheCat/goodpractice
+  - ropensci/spelling
   - richelbilderbeek/DAISIE/DAISIE
   - richelbilderbeek/ribir
