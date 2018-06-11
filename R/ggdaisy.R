@@ -4,6 +4,8 @@ install_ggtree <- function() {
   biocLite("ggtree")
 }
 
+#' Plot a DAISIE data table
+#' @param df a data frame
 #' @author Richel J.C. Bilderbeek
 #' @export
 ggdaisie <- function(
