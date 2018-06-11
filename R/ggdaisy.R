@@ -1,8 +1,8 @@
-install_ggtree <- function() {
-  source("https://bioconductor.org/biocLite.R")
-  # biocLite("BiocUpgrade") # you may need this
-  biocLite("ggtree")
-}
+#install_ggtree <- function() {
+#  source("https://bioconductor.org/biocLite.R")
+#  # biocLite("BiocUpgrade") # you may need this
+#  biocLite("ggtree")
+#}
 
 #' Plot a DAISIE data table
 #' @param df a data frame
@@ -26,7 +26,6 @@ ggdaisie <- function(
       )
     }
   }
-  print(class(phylos))
   phylos <- phylos[-1]
   testit::assert(class(phylos) == "multiPhylo")
   ggtree::ggtree(

@@ -11,8 +11,11 @@ test_that("use", {
 test_that("ape", {
 
   phylo <- ape::read.tree(text = "(A:1,B:1):20;")
-  ggdaisie:::plot_phylo_with_stem_ape(phylo)
-  ape::add.scale.bar()
+  expect_silent({
+    ggdaisie:::plot_phylo_with_stem_ape(phylo)
+    ape::add.scale.bar()
+    }
+  )
 })
 
 test_that("ggtree", {
