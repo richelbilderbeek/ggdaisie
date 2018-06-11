@@ -76,14 +76,14 @@ ggd_create_phylo_non_endemic <- function(
   phylo <- ape::read.tree(text = newick)
 
   # Pad to the right, by adding a hidden outgroup to the stem
-  #phylo <- ribir::add_outgroup_to_phylogeny(
-  #  phylogeny = phylo,
-  #  stem_length = island_age - immigration_time,
-  #  outgroup_name = "X"
-  #)
+  phylo <- ribir::add_outgroup_to_phylogeny(
+   phylogeny = phylo,
+   stem_length = island_age - immigration_time,
+   outgroup_name = "X"
+  )
 
   attr(phylo, "status") <- factor(
-    c("Non_endemic", "invisible", "Non_endemic"),
+    c("invisible", "Non_endemic", "invisible", "invisible", "invisible"),
     levels = get_ggdaisy_states()
   )
 

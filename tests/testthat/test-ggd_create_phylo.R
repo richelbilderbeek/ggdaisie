@@ -37,5 +37,5 @@ test_that("use, Non_endemic", {
   expect_true("status" %in% names(attributes(phylo)))
   expect_true(all(attributes(phylo)$status %in% get_ggdaisy_states()))
   expect_true(all(levels(attributes(phylo)$status) %in% get_ggdaisy_states()))
-  expect_equal(get_crown_age(phylo), island_age)
+  expect_equal(ggdaisie:::get_crown_age(phylo), island_age)
 })
