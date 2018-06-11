@@ -1,4 +1,7 @@
-#' Create a comb phylo from branch length
+#' Create a comb phylogeny from branch length
+#' @param branching_times one or more branching times
+#' @return a comb phylogeny of class \code{phylo}
+#' @author Richel J.C. Bilderbeek
 ggd_brts_to_rnd_phylo <- function(
   branching_times
 ) {

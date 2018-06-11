@@ -2,10 +2,19 @@
 % Please edit documentation in R/ggd_brts_to_rnd_phylo.R
 \name{ggd_brts_to_rnd_phylo}
 \alias{ggd_brts_to_rnd_phylo}
-\title{Create a comb phylo from branch length}
+\title{Create a comb phylogeny from branch length}
 \usage{
 ggd_brts_to_rnd_phylo(branching_times)
 }
+\arguments{
+\item{branching_times}{one or more branching times}
+}
+\value{
+a comb phylogeny of class \code{phylo}
+}
 \description{
-Create a comb phylo from branch length
+Create a comb phylogeny from branch length
+}
+\author{
+Richel J.C. Bilderbeek
 }
