@@ -3,20 +3,26 @@
 #' @param status the clade's status,
 #'   must be a member of \code{\link{get_daisy_input_statuses}}
 #' @param branching_times branching times
+#' @param island_age island age
 #' @return a phylogeny of class \code{phylo} with a \code{status} attribute
 #' @author Richel J.C. Bilderbeek
 ggd_create_phylo <- function(
   clade_name,
   status,
-  branching_times
+  branching_times,
+  island_age = max(branching_times)
 ) {
   testit::assert(status %in% get_daisy_input_statuses())
   if (status == "Non_endemic_MaxAge") {
+    testit::assert(length(branching_times) == 1)
+    testit::assert(branching_times[1] >= island_age)
     ggd_create_phylo_non_endemic_max_age(
-      time = branching_times,
+      time = island_age,
       taxon_label = clade_name
     )
   } else if (status == "Non_endemic") {
+    testit::assert(length(branching_times) == 1)
+    testit::assert(branching_times[1] <= island_age)
     ggd_create_phylo_non_endemic(
       immigration_time = branching_times,
       taxon_label = clade_name

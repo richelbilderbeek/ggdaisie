@@ -19,5 +19,9 @@ get_daisie_data <- function(filename) {
   name <- load(full_path)
   df <- get(name)
   rm(name)
+
+  if ("Branching_times" %in% colnames(df)) {
+    df$Branching_times <- as.character(df$Branching_times)
+  }
   df
 }

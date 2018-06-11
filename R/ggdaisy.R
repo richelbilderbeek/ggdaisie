@@ -15,6 +15,7 @@ ggdaisie <- function(
 ) {
   testit::assert("Status" %in% names(df))
   testit::assert(all(df$Status %in% get_daisy_input_statuses()))
+  testit::assert(class(df$Branching_times) == "character")
 
   status <- NULL; rm(status) # nolint, should fix warning: no visible binding for global variable
 
@@ -25,10 +26,13 @@ ggdaisie <- function(
   phylos <- ape::read.tree(text = "(X:0,Y:0);")
 
   for (i in seq(1, nrows)) {
+    brts_str <- df$Branching_times[i]
+    brts <- as.numeric(strsplit(brts_str, ',')[[1]])
     phylo <- ggd_create_phylo(
       clade_name = df$Clade_name[i],
       status = df$Status[i],
-      branching_times = df$Branching_times[i]
+      branching_times = brts,
+      island_age = island_age
     )
     if (is.null(phylo)) next
     phylos <- c(phylos, phylo)
