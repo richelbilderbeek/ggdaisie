@@ -23,17 +23,16 @@ ggdaisie <- function(
   phylos <- ape::read.tree(text = "(X:0,Y:0);")
 
   for (i in seq(1, nrows)) {
-    if (df$Status[i] == "Non_endemic_MaxAge") {
-
-      phylos <- c(
-        phylos,
-        create_single_taxon_tree(
-          time = df$Branching_times[i],
-          taxon_label = df$Clade_name[i]
-        )
+  if (df$Status[i] != "Non_endemic_MaxAge") next
+    phylos <- c(
+      phylos,
+      ggd_create_phylo(
+        clade_name = df$Clade_name[i],
+        status = df$Status[i],
+        branching_times = df$Branching_times[i]
       )
-      testit::assert(class(phylos) == "multiPhylo")
-    }
+    )
+    testit::assert(class(phylos) == "multiPhylo")
   }
 
   # Remove the dummy phylo object
