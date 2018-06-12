@@ -14,15 +14,14 @@ ggd_plot <- function(phylos) {
   ggtree::ggtree(
     phylos, ggtree::aes(color = status, linetype = status)
   ) +
-    ggplot2::scale_colour_manual(values = c("#0000FF", "#008800", "#008800", "#FFFFFF")) +
-    ggplot2::scale_linetype_manual(values = c("solid", "solid", "dashed", "longdash")) +
-    ggplot2::facet_wrap(~.id, scales="fixed", nrow = length(phylos)) +
-    ggtree::geom_tiplab(align = FALSE) + # nolint will align by adding a hidden root later
-    ggtree::theme_tree2(
-      strip.text.x = ggplot2::element_blank(),
-      strip.text.y = ggplot2::element_blank(),
-      panel.spacing.y = ggplot2::unit(0, "mm") # nolint cannot make negative
-    ) +
-    ggtree::geom_rootpoint()
+  ggplot2::scale_colour_manual(values = c("#0000FF", "#008800", "#008800", "#FFFFFF")) +
+  ggplot2::scale_linetype_manual(values = c("solid", "solid", "dashed", "longdash")) +
+  ggplot2::facet_wrap(~.id, scales = "fixed", nrow = length(phylos)) +
+  ggtree::geom_tiplab() +
+  ggtree::theme_tree2(
+    strip.text.x = ggplot2::element_blank(),
+    strip.text.y = ggplot2::element_blank(),
+    panel.spacing.y = ggplot2::unit(0, "mm") # nolint cannot make negative
+  )
 
 }

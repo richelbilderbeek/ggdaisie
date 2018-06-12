@@ -33,6 +33,6 @@ plot_phylo_with_stem_ggtree <- function(phylo) {
     ggplot2::aes(color = group)
   ) +
   ggplot2::scale_colour_manual(values = c("#FFFFFF", "#000000")) +
-  ggtree::geom_tiplab() +
-  ggtree::geom_rootpoint()
+  ggtree::geom_tiplab()
+  # + ggtree::geom_rootpoint()
 }
