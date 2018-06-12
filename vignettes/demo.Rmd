@@ -56,6 +56,17 @@ knitr::kable(df)
 
 Plot:
 
-```{r fig.width=7, fig.height=7}
-#ggdaisie(df, island_age = 4)
+```{r fig.width=8, fig.height=12}
+ggdaisie(df, island_age = 4)
+```
+
+## Using DAISIE
+
+DAISIE has an equivalent way to plot this:
+
+```{r fig.width=8, fig.height=12}
+DAISIE::DAISIE_plot_island(
+  get_daisie_data("Galapagos_datatable.RData"),
+  4
+)
 ```
