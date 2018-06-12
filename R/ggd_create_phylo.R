@@ -145,8 +145,8 @@ ggd_create_phylo_endemic <- function(
     statuses <- rep("Endemic", times = n_statuses)
     statuses[1] <- "invisible"
     statuses[2] <- "invisible"
-    statuses[n_statuses-2] <- "invisible"
-    statuses[n_statuses-1] <- "invisible"
+    statuses[ape::Ntip(phylo) + 2] <- "invisible"
+    statuses[ape::Ntip(phylo) + 3] <- "invisible"
 
     attr(phylo, "status") <- factor(
       statuses,

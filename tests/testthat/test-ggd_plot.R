@@ -47,17 +47,33 @@ test_that("use Endemic, Mimus", {
   ggd_plot(phylos)
 })
 
-test_that("use Endemic, Mimus sub", {
+test_that("use Endemic, Mimus sub 4", {
 
   island_age <- 4
   df <- get_daisie_data("Galapagos_datatable.RData")
   df <- df[ df$Clade_name == "Mimus", ]
   df$Branching_times[1] <- "3.958,3.422,2.884,0.459"
+  phylos <- ggd_create_phylos(df, island_age = island_age)
+  ggd_plot(phylos)
+})
+
+test_that("use Endemic, Mimus sub 3", {
+
+  island_age <- 4
+  df <- get_daisie_data("Galapagos_datatable.RData")
+  df <- df[ df$Clade_name == "Mimus", ]
   df$Branching_times[1] <- "3.958,3.422,2.884"
+  phylos <- ggd_create_phylos(df, island_age = island_age)
+  ggd_plot(phylos)
+})
+
+test_that("use Endemic, Mimus sub 2", {
+
+  island_age <- 4
+  df <- get_daisie_data("Galapagos_datatable.RData")
+  df <- df[ df$Clade_name == "Mimus", ]
   df$Branching_times[1] <- "3.958,3.422"
   phylos <- ggd_create_phylos(df, island_age = island_age)
-  #branchlist <- ape::which.edge(phylo, 3)
-  #phylos[[1]]$edge[,2] %in% which(phylos[[1]]$tip.label == "X")
   ggd_plot(phylos)
 })
 
